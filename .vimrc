@@ -8,11 +8,12 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
-
 " Vundle plugins to use
 Plugin 'morhetz/gruvbox'
 Plugin 'scrooloose/nerdtree'
 Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'vim-syntastic/syntastic'
 
 " Vundle setup end
 call vundle#end()
@@ -35,7 +36,7 @@ hi GitGutterChange ctermbg=235 ctermfg=245
 hi GitGutterDelete ctermbg=235 ctermfg=245
 hi GitGutterChangeDelete ctermbg=235 ctermfg=245
 hi EndOfBuffer ctermfg=237 ctermbg=235
-
+hi Pmenu ctermbg=238
 set statusline=%=%P\ %f\ %m
 set fillchars=vert:\ ,stl:\ ,stlnc:\ 
 set laststatus=2
@@ -44,8 +45,13 @@ set number
 set autoindent
 set backspace=indent,eol,start
 set formatoptions-=cro
-set noet ci pi sts=0 sw=4 ts=2
+set noet ci pi sts=0 sw=2 ts=2
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
+
+" Spacing
+" set expandtab
+" set tabstop=2
+" set shiftwidth=2
 
 " Searching
 set ignorecase              " case insensitive searching
@@ -79,10 +85,24 @@ let NERDTreeAutoDeleteBuffer = 1
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-let NERDTreeIgnore = ['\.swp$']
+let NERDTreeIgnore = ['\.swp$', '\.o$', '\.tsk$']
 let NERDTreeStatusline = ' '
 
 " Ctrlp
 nmap <silent> <leader>l :CtrlP<cr>
 let g:ctrlp_show_hidden=1
 let g:ctrlp_by_filename=1
+
+" Clang format
+map <C-I> :pyf ~/clang-format.py<cr>
+
+" Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_cpp_checkers = ['clang-tidy']
+
