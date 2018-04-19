@@ -8,18 +8,17 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
-" Vundle plugins to use
 Plugin 'morhetz/gruvbox'
 Plugin 'scrooloose/nerdtree'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'vim-syntastic/syntastic'
 
 " Vundle setup end
 call vundle#end()
 filetype plugin indent on
 
 " Visual
+set t_ut=
 set t_Co=256
 set background=dark
 colorscheme gruvbox
@@ -49,9 +48,9 @@ set noet ci pi sts=0 sw=2 ts=2
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 
 " Spacing
-" set expandtab
-" set tabstop=2
-" set shiftwidth=2
+set expandtab
+set tabstop=2
+set shiftwidth=2
 
 " Searching
 set ignorecase              " case insensitive searching
@@ -94,15 +93,5 @@ let g:ctrlp_show_hidden=1
 let g:ctrlp_by_filename=1
 
 " Clang format
-map <C-I> :pyf ~/clang-format.py<cr>
-
-" Syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_cpp_checkers = ['clang-tidy']
+map <C-I> :pyf ~/.bin/clang-format.py<cr>
 
