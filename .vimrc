@@ -11,7 +11,6 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'morhetz/gruvbox'
 Plugin 'scrooloose/nerdtree'
 Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'Valloric/YouCompleteMe'
 
 " Vundle setup end
 call vundle#end()
@@ -79,10 +78,10 @@ nnoremap <Leader>qd daW"=substitute(@@,"'\\\|\"","","g")<CR>P
 nmap <silent> <leader>k :NERDTreeToggle<cr>
 nmap <silent> <leader>y :NERDTreeFind<cr>
 let NERDTreeShowHidden=1
-let NERDTreeQuitOnOpen = 1
-let NERDTreeAutoDeleteBuffer = 1
-let NERDTreeMinimalUI = 1
-let NERDTreeDirArrows = 1
+let NERDTreeQuitOnOpen=1
+let NERDTreeAutoDeleteBuffer=1
+let NERDTreeMinimalUI=1
+let NERDTreeDirArrows=1
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 let NERDTreeIgnore = ['\.swp$', '\.o$', '\.tsk$']
 let NERDTreeStatusline = ' '
@@ -93,5 +92,4 @@ let g:ctrlp_show_hidden=1
 let g:ctrlp_by_filename=1
 
 " Clang format
-map <C-I> :pyf ~/.bin/clang-format.py<cr>
-
+map <C-I> :py3f ~/.bin/clang-format.py<cr>
