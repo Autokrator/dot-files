@@ -1,7 +1,7 @@
 (setq-default theming-modifications
               '((doom-molokai
                  (default :background "#282828")
-                 (linum-highlight-face :background "#292929" :foreground "#FD971F")
+                 (line-number-current-line :background "#292929" :foreground "#FD971F")
                  (org-level-1 :background "#282828")
                  (helm-source-header :foreground "#F92672" :background "#282828")
                  (mode-line :box (:color "#353535" :line-width 1)

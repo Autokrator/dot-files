@@ -143,10 +143,14 @@
   (spaceline-toggle-hud-off)
   (spaceline-toggle-buffer-size-off)
   (spaceline-toggle-purpose-off)
-;;  (set-face-background 'match (face-attribute 'region :background))
-
+  (add-to-list 'default-frame-alist
+             '(ns-transparent-titlebar . t))
+  (add-to-list 'default-frame-alist
+             '(ns-appearance . dark))
   (setq-default
-   powerline-image-apple-rgb t)
+   powerline-image-apple-rgb t
+   frame-title-format '(""))
+  (setq initial-frame-alist '((top . 0) (left . 0) (width . 100) (height . 40)))
   (with-eval-after-load 'org
     (set-face-background 'org-date-selected (face-attribute 'highlight :background)))
 
@@ -170,6 +174,5 @@
   (add-to-list 'interpreter-mode-alist '("bash" . sh-mode))
   (add-to-list 'interpreter-mode-alist '("zsh" . sh-mode))
   (add-to-list 'interpreter-mode-alist '("python" . python-mode))
-
   ;; Experimental
   )
