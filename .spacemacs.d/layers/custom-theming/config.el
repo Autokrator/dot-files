@@ -1,8 +1,8 @@
 (setq-default theming-modifications
               '((doom-molokai
                  (default :background "#282828")
-                 (line-number-current-line :background "#292929" :foreground "#FD971F")
-                 (org-level-1 :background "#282828")
+                 (line-number-current-line :background "#292929"
+                                           :foreground "#FD971F")
                  (helm-source-header :foreground "#F92672" :background "#282828")
                  (mode-line :box (:color "#353535" :line-width 1)
                             :background "#353535")
@@ -22,5 +22,10 @@
                  (helm-prefarg :foreground "PaleGreen")
                  (sp-show-pair-match-face :background "#4E4E4E")
                  (match :background "#4E4E4E")
+                 (ein:cell-input-prompt :weight bold :foreground "#FD971F"
+                                        :background "#282828")
+                 (ein:cell-input-area :background "#282828")
+                 (ein:cell-output-prompt :weight light :foreground "#A6E22E"
+                                         :background "#282828")
                  )))
 

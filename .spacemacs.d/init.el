@@ -23,10 +23,15 @@
      git
      html
      (ibuffer :variables ibuffer-group-buffers-by 'projects)
+     (ipython-notebook :variable
+                       ein:complete-on-dot nil
+                       ein:completion-backend 'ein:use-company-backend)
      javascript
      markdown
      org
-     python
+     (python :variables
+             python-enable-yapf-format-on-save t
+             python-sort-imports-on-save t)
      (ranger :variables
              ranger-override-dired t
              ranger-cleanup-on-disable t
@@ -131,8 +136,6 @@
   ;; Misc
   (hlinum-activate)
   (add-hook 'text-mode-hook 'auto-fill-mode)
-  ;; (setq-default yas-snippet-dirs
-  ;;       '("~/.spacemacs.d/snippets"))
   (setq-default
    insert-directory-program "gls"
    dired-use-ls-dired t
@@ -152,6 +155,7 @@
    frame-title-format '(""))
   (setq initial-frame-alist '((top . 0) (left . 0) (width . 100) (height . 40)))
   (with-eval-after-load 'org
+    (set-face-background 'org-level-1 (face-attribute 'default :background))
     (set-face-background 'org-date-selected (face-attribute 'highlight :background)))
 
   ;; C-C++
@@ -174,5 +178,16 @@
   (add-to-list 'interpreter-mode-alist '("bash" . sh-mode))
   (add-to-list 'interpreter-mode-alist '("zsh" . sh-mode))
   (add-to-list 'interpreter-mode-alist '("python" . python-mode))
+
+  ;; Python
+  (remove-hook 'python-mode-hook 'importmagic-mode)
+  (with-eval-after-load "company"
+    '(add-to-list 'company-backends '(company-anaconda :with company-capf))
+    '(add-to-list 'company-backends 'ein:company-backend))
+  (add-hook 'python-mode-hook 'anaconda-eldoc-mode)
+  (global-company-mode t)
+
   ;; Experimental
-  )
+  (setq browse-url-browser-function 'browse-url-default-macosx-browser))
+
+

@@ -16,3 +16,4 @@ ZSH_WORK=~/.zshrc_work
 if [[ -f "${ZSH_WORK}" ]]; then
   source "${ZSH_WORK}"
 fi
+

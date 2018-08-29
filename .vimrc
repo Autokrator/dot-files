@@ -93,3 +93,7 @@ let g:ctrlp_by_filename=1
 
 " Clang format
 map <C-I> :py3f ~/.bin/clang-format.py<cr>
+
+"" ITerm2 Cursor change   
+let &t_SI = "\<Esc>]1337;CursorShape=1\x7"
+let &t_EI = "\<Esc>]1337;CursorShape=0\x7"
