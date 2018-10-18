@@ -17,15 +17,16 @@
       auto-completion-enable-help-tooltip 'manual
       :disabled-for org)
      (c-c++ :variables
-            c-c++-enable-clang-support t
+            c-c++-enable-clang-support nil
             c-c++-default-mode-for-headers 'c++-mode)
+     dash
      emacs-lisp
      git
      html
      (ibuffer :variables ibuffer-group-buffers-by 'projects)
-     (ipython-notebook :variable
-                       ein:complete-on-dot nil
-                       ein:completion-backend 'ein:use-company-backend)
+     ;; (ipython-notebook :variable
+     ;;                   ein:complete-on-dot nil
+     ;;                   ein:completion-backend 'ein:use-company-backend)
      javascript
      markdown
      org
@@ -133,6 +134,9 @@
      (tab-mark 9 [9655 9]))))
 
 (defun dotspacemacs/user-config ()
+  ;; Shortcuts
+  (evil-define-key 'visual evil-surround-mode-map "S" 'evil-surround-region)
+
   ;; Misc
   (hlinum-activate)
   (add-hook 'text-mode-hook 'auto-fill-mode)
@@ -140,6 +144,7 @@
    insert-directory-program "gls"
    dired-use-ls-dired t
    multi-term-program "/bin/zsh")
+  (setq-default helm-buffer-max-length 40)
 
   ;; Theming Extras
   (spaceline-toggle-buffer-position-off)
@@ -160,7 +165,8 @@
 
   ;; C-C++
   (defun clang-format-bindings ()
-    (define-key c++-mode-map [tab] 'clang-format-buffer))
+    (define-key c++-mode-map [S-tab] 'clang-format-buffer)
+    (define-key c++-mode-map [C-tab] 'clang-format-region))
   (add-hook 'c++-mode-hook 'clang-format-bindings)
   (add-hook 'c-mode-hook 'clang-format-bindings)
   (c-add-style "personal"
@@ -171,7 +177,7 @@
                   (inline-open . 0)
                   (statement-cont . c-lineup-assignments)
                   (inextern-lang . 0)
-                  (innamespace . +))))
+                  (innamespace . 0))))
   (push '(other . "personal") c-default-style)
 
   ;; Interpreter List
@@ -189,5 +195,6 @@
 
   ;; Experimental
   (setq browse-url-browser-function 'browse-url-default-macosx-browser))
+
 
 
